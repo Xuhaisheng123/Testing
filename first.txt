@@ -1,3 +1,2 @@
 Hello Wrold!
 I love ham
-This my first commit. 
