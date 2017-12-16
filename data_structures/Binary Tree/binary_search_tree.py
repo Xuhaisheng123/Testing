@@ -39,7 +39,7 @@ class BinarySearchTree:
 	def __init__(self):
 		self.root = None
 	
-	def insert(self,label1):
+	def insert(self,label):
 		#Create a new node
 		new_node = Node(label,None)
 		#If tree is empty
