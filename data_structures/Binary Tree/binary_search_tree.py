@@ -94,11 +94,51 @@ class BinarySearchTree:
 					node.setLabel(tmpNode.getLabel())
 	
 	
+	def getNode(self,label):
+		curr_node = None
+		#If the tree is not empty
+		if(not self.empty()):
+			#Get tree root
+			curr_node = self.getRoot()
+			#while we don't find the node wo looking for
+			#I am using lazy evaluation here to avoid NoneType Attribute error
+			while curr_node is not None and curr_node.getLabel() is not label:
+				#If node label less than curr_node label we go left				
+				if curr_node.getLabel() > label:
+					curr_node = curr_node.getLeft()
+				else: 
+					curr_node = curr_node.getRight()
+					
+			return curr_node
 	
 	
+	def getMax(self,root = None):
+		if (root is not None):
+			curr_node = root
+		else:
+			#we go deep to the right branch
+			curr_node = self.getRoot()
+		if (not self.empty()):
+			while (curr_node.getRight() is not None):
+				curr_node = curr_node.getRight()
+		return curr_node
 	
+	def getMin(self,root = None):
+		if (root is not None):
+			curr_node = root
+		else:
+			curr_node = self.getRoot()
+			
+		if (not self.empty()):
+			while (curr_node.getLeft() is not None):
+				curr_node  = curr_node.getLeft()
+		return curr_node
 	
-	
+	def empty():
+		if self.root is None:
+			return True
+		else:
+			return False
 	
 	
 	
