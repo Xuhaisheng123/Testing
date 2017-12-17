@@ -133,7 +133,7 @@ class BinarySearchTree:
 			while (curr_node.getLeft() is not None):
 				curr_node  = curr_node.getLeft()
 		return curr_node
-	
+	#function empty
 	def empty():
 		if self.root is None:
 			return True
