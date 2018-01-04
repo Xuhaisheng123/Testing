@@ -133,23 +133,71 @@ class BinarySearchTree:
 			while (curr_node.getLeft() is not None):
 				curr_node  = curr_node.getLeft()
 		return curr_node
-	#function empty
-	def empty():
+	#function empty :judge if the tree is a empty tree  
+	def empty(self):
 		if self.root is None:
 			return True
 		else:
 			return False
 	
+	#Traverse the tree,stored in the nodeList
+	def __InOrderTraversal(self,curr_node):
+		nodeList = []
+		if curr_node is not None :
+			nodeList.insert(0,curr_node)
+			nodeList = nodeList + self.__InOrderTraversal(curr_node.getLeft())
+			nodeList = nodeList + self.__InOrderTraversal(curr_node.getRight())
+		return nodeList
 	
+	def getRoot(self):
+		return self.root
+		
+	def __isRightChildren(self,node):
+		if(node == node.getParent().getRight()):
+			return True
+		return False
+		
+	def __reassignNodes(self,node,newChildren):
+		if(newChildren is not None):
+			newChildren.setParent(node.getParent)
+		
+		if (node.getParent() is not None):
+			#if it is the right Children
+			if(slef.__isRightChildren(node)):
+				node.getParent().setRight(newChildren)
+			else:
+				#Else it is the left children
+				node.getParent().setLeft(newChildren)
 	
+	#This function traversal the tree. By default it returns an
+	#In order traversal list. You can pass a function to traversal
+    #The tree as needed by client code
+	def traversalTree(self,traversalFunction = None,root = None):
+		if(traversalFunction is None):
+			#Return a list of nodes in preOrder by default
+			return self.__InOrderTraversal(self.root)
+		else:
+			#Return a list of node in the order that the users wants to
+			return traversalFunction(self.root)
+			
+	#Returns an string of all the nodes labels in the list 
+    #In Order Traversal
+	def __str__(self):
+		list = self.__InOrderTraversal(self.root)
+		str = ""
+		for x in list:
+			str = str + " " + x.getLabel().__str__()
+		return str
+	def InPreOrder(curr_node):
+		nodeList = []
+		if curr_node is not None:
+			nodeList = nodeList + InPreOrder(curr_node.getLeft())
+			nodeList.insert(0,curr_node.getLabel())
+			nodeList = nodeList + InPreOrder(curr_node.getRight())
+		return nodeList
 	
-	
-	
-	
-	
-	
-	
-	
+##testing	
+		
 	
 	
 	
